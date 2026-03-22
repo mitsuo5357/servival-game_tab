@@ -12,23 +12,24 @@
     
     #crosshair { position: absolute; top: 50%; left: 50%; width: 20px; height: 20px; margin-top: -10px; margin-left: -10px; color: white; font-size: 20px; text-align: center; line-height: 20px; pointer-events: none; font-weight: bold; text-shadow: 1px 1px 0px black; z-index: 10; }
     
-    #inventory { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.6); color: white; padding: 10px; border-radius: 8px; font-size: 14px; z-index: 10; pointer-events: none; border: 2px solid #555; }
-    #hp-bar { font-size: 20px; margin-bottom: 5px; text-shadow: 1px 1px 2px black; }
+    #inventory { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.6); color: white; padding: 8px; border-radius: 8px; font-size: 13px; z-index: 10; pointer-events: none; border: 2px solid #555; }
+    #hp-bar { font-size: 18px; margin-bottom: 3px; text-shadow: 1px 1px 2px black; }
     
-    #toolbar { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 20; background: rgba(0,0,0,0.5); padding: 5px; border-radius: 10px; }
-    .slot-btn { width: 50px; height: 50px; background: rgba(255,255,255,0.2); border: 2px solid #aaa; border-radius: 8px; color: white; font-size: 12px; font-weight: bold; cursor: pointer; }
+    #toolbar { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 20; background: rgba(0,0,0,0.5); padding: 5px; border-radius: 10px; }
+    .slot-btn { width: 45px; height: 45px; background: rgba(255,255,255,0.2); border: 2px solid #aaa; border-radius: 8px; color: white; font-size: 11px; font-weight: bold; cursor: pointer; }
     .slot-btn.active { border-color: #00ffcc; background: rgba(0, 255, 204, 0.3); }
 
-    #joystick-base { position: absolute; bottom: 30px; left: 30px; width: 120px; height: 120px; background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; z-index: 20; touch-action: none; }
-    #joystick-stick { position: absolute; top: 35px; left: 35px; width: 50px; height: 50px; background: rgba(255,255,255,0.7); border-radius: 50%; pointer-events: none; }
+    #joystick-base { position: absolute; bottom: 20px; left: 20px; width: 100px; height: 100px; background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; z-index: 20; touch-action: none; }
+    #joystick-stick { position: absolute; top: 25px; left: 25px; width: 50px; height: 50px; background: rgba(255,255,255,0.7); border-radius: 50%; pointer-events: none; }
 
-    #action-zone { position: absolute; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 20; }
-    .action-btn { width: 70px; height: 70px; border-radius: 50%; background: rgba(255,100,100,0.7); color: white; font-size: 16px; font-weight: bold; border: 3px solid white; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.5); touch-action: none; }
+    #action-zone { position: absolute; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 20; }
+    .action-btn { width: 60px; height: 60px; border-radius: 50%; background: rgba(255,100,100,0.7); color: white; font-size: 14px; font-weight: bold; border: 3px solid white; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.5); touch-action: none; }
     #btn-place { background: rgba(100,200,100,0.7); }
     #btn-jump { background: rgba(100,100,255,0.7); }
 
-    #system-zone { position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; gap: 8px; z-index: 20; }
-    .sys-btn { padding: 8px 12px; font-size: 14px; font-weight: bold; border: 2px solid #555; border-radius: 5px; cursor: pointer; background: rgba(0,0,0,0.6); color: white; touch-action: none;}
+    /* ★ 修正：8インチタブレット用に2列のグリッド配置に変更！サイズも少し小さく！ */
+    #system-zone { position: absolute; top: 10px; right: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px; z-index: 20; }
+    .sys-btn { padding: 6px 6px; font-size: 11px; font-weight: bold; border: 2px solid #555; border-radius: 5px; cursor: pointer; background: rgba(0,0,0,0.6); color: white; touch-action: none;}
     .sys-btn:active { background: rgba(255,255,255,0.5); }
 
     #blocker { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; cursor: pointer; z-index: 50; flex-direction: column; }
@@ -64,7 +65,7 @@
   </div>
 
   <div id="action-zone">
-    <div style="display:flex; gap:15px;">
+    <div style="display:flex; gap:10px;">
       <button class="action-btn" id="btn-break">⛏️壊す</button>
       <button class="action-btn" id="btn-place">🧱置く<br>(使う)</button>
     </div>
@@ -72,10 +73,10 @@
   </div>
 
   <div id="system-zone">
-    <button class="sys-btn" onclick="doCraft('pick')">🛠️ツルハシ強化</button>
-    <button class="sys-btn" onclick="doCraft('sword')">⚔️剣を強化</button>
-    <button class="sys-btn" onclick="doCraft('bucket')">🪣バケツ作成</button>
-    <button class="sys-btn" onclick="toggleView()" style="background:#555;">🎥視点変更</button>
+    <button class="sys-btn" onclick="doCraft('pick')">🛠️ツル強化</button>
+    <button class="sys-btn" onclick="doCraft('sword')">⚔️剣強化</button>
+    <button class="sys-btn" onclick="doCraft('bucket')">🪣バケツ</button>
+    <button class="sys-btn" onclick="toggleView()" style="background:#555;">🎥視点</button>
     <button class="sys-btn" id="btn-save" style="background:#ffaa00;">💾セーブ</button>
     <button class="sys-btn" id="btn-load" style="background:#00aaff;">📂ロード</button>
   </div>
@@ -158,7 +159,8 @@
     scene.add(player);
 
     function generateWorld() {
-      const radius = 80; // サクサク動く島サイズ
+      // ★ 修正：重いので島の半径を50にギュッと縮小！(超軽量化)
+      const radius = 50; 
       const volcanoX = 0, volcanoZ = 0; 
 
       for(let x = -radius; x <= radius; x++) {
@@ -168,9 +170,9 @@
           
           let h = Math.sin(x/15)*8 + Math.cos(z/15)*8 + Math.sin((x+z)/25)*5;
           const vDist = Math.sqrt((x - volcanoX)**2 + (z - volcanoZ)**2);
-          if (vDist < 30) {
-            h += (30 - vDist) * 1.5; 
-            if (vDist < 8) h -= (8 - vDist) * 2.5; 
+          if (vDist < 20) {
+            h += (20 - vDist) * 1.5; 
+            if (vDist < 6) h -= (6 - vDist) * 2.5; 
           }
 
           let baseHeight = Math.floor(h);
@@ -185,13 +187,13 @@
                 else if (y < 0 && Math.random() < 0.4) bType = 7; 
                 else bType = 6; 
               }
-              if (vDist < 7 && y >= baseHeight - 2) {
+              if (vDist < 5 && y >= baseHeight - 2) {
                 bType = 10; 
               }
               addBlock(x, y, z, bType);
             }
 
-            if (type === 0 && vDist > 30 && Math.random() < 0.015) {
+            if (type === 0 && vDist > 20 && Math.random() < 0.02) {
               if (Math.random() < 0.7) { 
                 addBlock(x, baseHeight+1, z, 2); addBlock(x, baseHeight+2, z, 2); addBlock(x, baseHeight+3, z, 4);
                 addBlock(x+1, baseHeight+2, z, 4); addBlock(x-1, baseHeight+2, z, 4); addBlock(x, baseHeight+2, z+1, 4); addBlock(x, baseHeight+2, z-1, 4);
@@ -232,7 +234,7 @@
       if (!guardianSpawned) {
         guardianSpawned = true;
         const monster = createGuardianSkin();
-        monster.position.set(40, 10, 40); scene.add(monster);
+        monster.position.set(20, 10, 20); scene.add(monster);
         guardian = { group: monster, hp: 100, maxHp: 100, isAggro: false, lastAttack: 0 };
       }
     }
@@ -243,7 +245,7 @@
       const dummy = new THREE.Object3D();
       blockData.forEach((data, type) => {
         if(data.length === 0) return;
-        const mesh = new THREE.InstancedMesh(geometry, mats[type], data.length + 15000); 
+        const mesh = new THREE.InstancedMesh(geometry, mats[type], data.length + 10000); 
         mesh.count = data.length;
         data.forEach((pos, i) => {
           dummy.position.set(pos.x, pos.y, pos.z); dummy.updateMatrix(); mesh.setMatrixAt(i, dummy.matrix);
@@ -255,9 +257,9 @@
     }
 
     function setSpawn() {
-      for(let x = -80; x <= 80; x++) {
-        for(let z = -80; z <= 80; z++) {
-          if (x*x + z*z < 35*35) continue; 
+      for(let x = -50; x <= 50; x++) {
+        for(let z = -50; z <= 50; z++) {
+          if (x*x + z*z < 25*25) continue; 
           for(let y = 20; y >= 0; y--) {
             const key = `${x},${y},${z}`;
             if(blockMap.has(key)) {
@@ -272,7 +274,7 @@
           }
         }
       }
-      player.position.set(35, 15, 35); 
+      player.position.set(25, 15, 25); 
     }
 
     const light = new THREE.DirectionalLight(0xffffff, 1.2); light.position.set(50, 100, 50); scene.add(light);
@@ -346,7 +348,6 @@
 
     window.toggleView = function() { isFirstPerson = !isFirstPerson; };
 
-    // 🕹️ 指でもトラックパッドでも動くジョイスティック
     const joyBase = document.getElementById('joystick-base');
     const joyStick = document.getElementById('joystick-stick');
     let joyTouchId = null;
@@ -377,7 +378,7 @@
       const centerY = rect.top + rect.height / 2;
       let dx = e.clientX - centerX;
       let dy = e.clientY - centerY;
-      const maxDist = 35;
+      const maxDist = 25;
       const dist = Math.sqrt(dx*dx + dy*dy);
       if (dist > maxDist) { dx = (dx/dist)*maxDist; dy = (dy/dist)*maxDist; }
       joyStick.style.transform = `translate(${dx}px, ${dy}px)`;
@@ -385,7 +386,7 @@
       joystickY = dy / maxDist;
     }
 
-    // 👆 スライドでカメラ（みっちゃん好みの逆向き対応！）
+    // 👆 ★修正：カメラを指の動きに追従させる（三男くんの標準スタイルに戻す）
     const touchPad = document.getElementById('touch-pad');
     let camTouchId = null;
     let lastCamX = 0, lastCamY = 0;
@@ -403,8 +404,8 @@
       if(e.pointerId === camTouchId) {
         const dx = e.clientX - lastCamX;
         const dy = e.clientY - lastCamY;
-        yaw += dx * 0.005;   // ★プラスで逆向き（ナチュラル操作）
-        pitch += dy * 0.005; // ★プラスで逆向き（ナチュラル操作）
+        yaw -= dx * 0.005;   // ★修正：またマイナスに戻したよ！
+        pitch -= dy * 0.005; // ★修正：またマイナスに戻したよ！
         pitch = Math.max(-Math.PI/2 + 0.1, Math.min(Math.PI/2 - 0.1, pitch));
         lastCamX = e.clientX; lastCamY = e.clientY;
       }
@@ -416,7 +417,6 @@
     touchPad.addEventListener('pointerup', handleCamEnd);
     touchPad.addEventListener('pointercancel', handleCamEnd);
 
-    // 💥 アクション処理（壊す・置く）
     const raycaster = new THREE.Raycaster();
     
     function doAction(isRightClick) {
@@ -436,7 +436,6 @@
         }
       }
 
-      // ★存在しない水ブロックを無視してパニック防止！
       const validMeshes = instancedMeshes.filter(m => m !== undefined);
       const hitTargets = [...validMeshes, sea];
       const intersects = raycaster.intersectObjects(hitTargets);
@@ -464,7 +463,6 @@
       const key = `${Math.round(pos.x)},${Math.round(pos.y)},${Math.round(pos.z)}`;
       const blockInfo = blockMap.get(key); if(!blockInfo) return;
 
-      // 🟢 アクション2（置く・使う・バケツ）
       if(isRightClick) {
         if (blockInfo.type === 5) { 
           blockMap.delete(key); matrix.scale(new THREE.Vector3(0,0,0)); mesh.setMatrixAt(iId, matrix); mesh.instanceMatrix.needsUpdate = true;
@@ -495,9 +493,8 @@
           } else {
             const nPos = pos.clone().add(hit.face.normal); const liqType = inv.liquid; inv.liquid = 0; updateUI();
             
-            // 初めて水を置く時、水を入れる箱がないなら新しく作る！
             if (!instancedMeshes[liqType]) {
-              const newMesh = new THREE.InstancedMesh(geometry, mats[liqType], 15000);
+              const newMesh = new THREE.InstancedMesh(geometry, mats[liqType], 10000);
               newMesh.count = 0; scene.add(newMesh); instancedMeshes[liqType] = newMesh;
             }
             const tMesh = instancedMeshes[liqType];
@@ -527,7 +524,7 @@
               inv[activeBlockId]--; updateUI();
 
               if (!instancedMeshes[activeBlockId]) {
-                const newMesh = new THREE.InstancedMesh(geometry, mats[activeBlockId], 15000);
+                const newMesh = new THREE.InstancedMesh(geometry, mats[activeBlockId], 10000);
                 newMesh.count = 0; scene.add(newMesh); instancedMeshes[activeBlockId] = newMesh;
               }
 
@@ -540,7 +537,6 @@
         }
       } 
 
-      // 🔴 アクション1（壊す）
       if(!isRightClick) {
         if((blockInfo.type >= 3 && blockInfo.type <= 10 && blockInfo.type !== 4 && blockInfo.type !== 12 && blockInfo.type !== 13) && inv.pick === 0) return; 
         const pickDmg = [1, 2, 5, 10, 20, 40, 100]; 
@@ -557,12 +553,10 @@
       }
     }
 
-    // 🕹️ ★大修正：指(touch)でもトラックパッド(mouse)でも絶対に動くボタン！
     document.getElementById('btn-break').addEventListener('pointerdown', (e) => { e.preventDefault(); e.stopPropagation(); doAction(false); });
     document.getElementById('btn-place').addEventListener('pointerdown', (e) => { e.preventDefault(); e.stopPropagation(); doAction(true); });
     document.getElementById('btn-jump').addEventListener('pointerdown', (e) => { e.preventDefault(); e.stopPropagation(); jumpRequested = true; });
 
-    // 💾 セーブ＆ロード
     document.getElementById('btn-save').addEventListener('pointerdown', (e) => {
       e.preventDefault(); e.stopPropagation();
       const savedBlocks = Array.from(blockMap.entries()).map(([k, v]) => ({ k: k, t: v.type, hp: v.hp }));
@@ -678,7 +672,6 @@
         const dir = idealCamPos.clone().sub(playerPos).normalize();
         
         raycaster.set(playerPos, dir);
-        // ★Vキーでも存在しないブロックを無視してパニック防止！
         const validMeshes = instancedMeshes.filter(m => m !== undefined); 
         const hitTargets = [...validMeshes]; 
         const intersects = raycaster.intersectObjects(hitTargets);
